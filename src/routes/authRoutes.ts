@@ -1,5 +1,5 @@
 import  express  from "express";
-import { registerStudent, registerTeacher, loginStudent} from '../controllers/authController';
+import { registerStudent, registerTeacher, loginUser} from '../controllers/authController';
 import { authMiddleware } from "../middleware/authMiddleware";
 
 
@@ -101,6 +101,6 @@ router.post('/registerTeacher', registerTeacher);
  *       401:
  *         description: שם משתמש או סיסמה שגויים
  */
-router.post('/loginStudent', authMiddleware, loginStudent);
+router.post('/loginUser', loginUser, authMiddleware);
 
 export default router;

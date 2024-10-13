@@ -14,7 +14,7 @@ export const authMiddleware = (req: AuthRequest, res: Response, next: NextFuncti
     const token = req.cookies.token;
 
     if (!token) {
-        res.status(401).json({Error, message: 'תתחיל לאהוד ביתר אולי יהיה לך סיכוי' })
+        res.status(401).json({ message: 'תתחיל לאהוד ביתר אולי יהיה לך סיכוי' })
         return;
     }
 
