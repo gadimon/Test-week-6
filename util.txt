@@ -1,0 +1,27 @@
+const teacherSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  classId: { type: mongoose.Schema.Types.ObjectId, ref: 'Class', unique: true } // לכל מורה יש כיתה אחת בלבד
+});
+
+const classSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  teacherId: { type: mongoose.Schema.Types.ObjectId, ref: 'Teacher', unique: true },
+  students: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Student' }]
+});
+
+const studentSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  classId: { type: mongoose.Schema.Types.ObjectId, ref: 'Class' },
+  grades: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Grade' }]
+});
+
+const gradeSchema = new mongoose.Schema({
+  studentId: { type: mongoose.Schema.Types.ObjectId, ref: 'Student', required: true },
+  classId: { type: mongoose.Schema.Types.ObjectId, ref: 'Class', required: true },
+  value: { type: Number, required: true },
+  note: { type: String }
+});
