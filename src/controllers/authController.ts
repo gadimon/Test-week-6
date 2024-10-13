@@ -70,8 +70,11 @@ export const loginStudent = async (req: Request, res: Response) => {
             httpOnly: true,
             secure: false,
             maxAge: 3600000
-        })
+        });
+        
         res.status(201).json({ message: "נרשמת בהצלחה תלמיד", token }); 
+
+
     } catch (error) {
         console.log(error);
         
