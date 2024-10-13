@@ -3,8 +3,32 @@ import { ITeacher } from './teacherModel';
 import { IStudent } from './studentModel'
 
 export interface IGrade extends Document {
-    studentId: IStudent['_id'],
-    teacherId: ITeacher['_id'],
+    student: IStudent['_id'],
+    teacher: ITeacher['_id'],
     value: number,
-    connent: string,
+    comment: string,
 };
+
+const gradeSchema: Schema = new Schema ({
+    student: {
+        type: Schema.Types.ObjectId,
+        ref: 'student',
+        required: true 
+    },
+
+    teacher: {
+        type: Schema.Types.ObjectId,
+        ref: 'teacher',
+        required: true 
+    },
+
+    value: {
+        type: Number,
+        require: true,
+    },
+
+    comment: {
+        type: String,
+        require: true,
+    }
+});
