@@ -12,4 +12,4 @@ export const connectToDatabase = async (): Promise<void> => {
         console.error("Failed to connect to database", error);
 
     }
-}
+};

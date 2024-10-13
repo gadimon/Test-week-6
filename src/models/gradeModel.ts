@@ -32,3 +32,5 @@ const gradeSchema: Schema = new Schema ({
         require: true,
     }
 });
+
+export default mongoose.model<IGrade>("Grade", gradeSchema);

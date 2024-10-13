@@ -40,7 +40,7 @@ const StudentSchema: Schema = new Schema({
     }
 
 
-}, { timestamps: true });
+});
 
 
 //פונקצייה שמצפינה את הסיסמא

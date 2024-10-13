@@ -5,7 +5,7 @@ export interface ITeacher extends Document {
     name: string,
     email: string,
     password: string,
-    class: string,
+    classRoom: string,
     comparePassword(teacherPassword: string): Promise<Boolean>
 };
 
@@ -28,15 +28,12 @@ const TeacherSchema: Schema = new Schema({
         minLength: [4, "The password must contain at least 4 characters"],
     },
 
-    class: {
+    classRoom: {
         type: String,
         require: true,
         unique: true,
     },
-
-
-
-}, { timestamps: true });
+});
 
 
 //פונקצייה שמצפינה את הסיסמא
