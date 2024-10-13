@@ -55,8 +55,8 @@ export const registerTeacher = async (req: Request, res: Response) => {
 
 export const loginStudent = async (req: Request, res: Response) => {
     const { password, email} = req.body;
-
-    const student = await Student.findOne({email});
+    try {
+        const student = await Student.findOne({email});
 
     if(!student || !(await student.comparePassword(password))){
          res.status(401).json({message: "username or password are wrong"})
@@ -71,6 +71,13 @@ export const loginStudent = async (req: Request, res: Response) => {
             secure: false,
             maxAge: 3600000
         })
-        res.status(201).json({ message: "נרשמת בהצלחה תלמיד", token });
+        res.status(201).json({ message: "נרשמת בהצלחה תלמיד", token }); 
+    } catch (error) {
+        console.log(error);
+        
+    }
+    
+
+   
     };
 
