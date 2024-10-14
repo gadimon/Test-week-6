@@ -6,12 +6,15 @@ import cookieParser from 'cookie-parser';
 import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import { authMiddleware } from "./middleware/authMiddleware";
+import gradeRoutes from "./routes/authRoutes";
+
 
 dotenv.config();
 
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
+app.use('/api/grades', gradeRoutes);
 
 
 const options = {

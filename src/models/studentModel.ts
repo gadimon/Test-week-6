@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema, Document, Types } from "mongoose";
 import bcrypt from "bcrypt";
 import { ITeacher } from './teacherModel'
 import { IGrade } from './gradeModel'
@@ -7,7 +7,7 @@ export interface IStudent extends Document {
     name: string,
     email: string,
     password: string,
-    teacher: ITeacher['_id'],
+    teacher: Types.ObjectId;
     grades: IGrade[],
     comparePassword(studentPassword: string): Promise<Boolean>
 };
@@ -17,30 +17,26 @@ const StudentSchema: Schema = new Schema({
         type: String,
         require: true,
     },
-
     email: {
         type: String,
         required: [true, "Email is required"],
         unique: true,
     },
-
     password: {
         type: String,
         require: true,
         minLength: [4, "The password must contain at least 4 characters"],
     },
-
     teacher: {
         type: Schema.Types.ObjectId,
-        ref: 'teacher'
+        ref: 'Teacher' 
     },
-    grades: {
+    grades: [{
         type: Schema.Types.ObjectId,
-        ref: 'grades'
-    }
-
-
+        ref: 'Grade'
+    }]
 });
+
 
 
 //פונקצייה שמצפינה את הסיסמא
